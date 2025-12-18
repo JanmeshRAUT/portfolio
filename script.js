@@ -405,3 +405,25 @@ function setupTestimonials() {
     testimonials[currentTestimonial].classList.add('active');
   }, 4000);
 }
+document.querySelectorAll(".preview-video").forEach(video => {
+
+  // Desktop hover
+  video.parentElement.addEventListener("mouseenter", () => {
+    video.play().catch(() => {});
+  });
+
+  video.parentElement.addEventListener("mouseleave", () => {
+    video.pause();
+    video.currentTime = 0;
+  });
+
+  // Mobile tap support
+  video.addEventListener("click", () => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
+
+});

@@ -547,7 +547,7 @@ h2 {
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
   gap: 20px;
-  padding: 0 20px;
+  padding: 0 30px;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -595,6 +595,14 @@ h2 {
   height: 400px;
 }
 
+/* ===== LANDSCAPE IN CAROUSEL MODE ===== */
+.portfolio-grid.carousel-mode .portfolio-item.landscape {
+  min-width: 520px;
+  width: 520px;
+  height: 400px;
+}
+
+
 .portfolio-item::after {
   content: '';
   position: absolute;
@@ -620,11 +628,10 @@ h2 {
   outline-offset: 2px;
 }
 
-.portfolio-item img,
-.portfolio-item video {
+.portfolio-item img{
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   border-radius: 24px;
   cursor: pointer;
   transition: transform var(--bezier-smooth) 0.4s, filter var(--bezier-smooth) 0.4s;
@@ -633,11 +640,21 @@ h2 {
   z-index: 0;
 }
 
-.portfolio-item:hover img,
-.portfolio-item:hover video {
+.portfolio-item:hover img{
   transform: scale(1.05);
   filter: brightness(0.95);
 }
+
+/* ===== LANDSCAPE PHOTO WIDE STYLE ===== */
+.portfolio-item.landscape {
+  grid-column: span 3;
+}
+
+/* Optional: slightly shorter height for cinematic look */
+.portfolio-item.landscape {
+  height: 320px;
+}
+
 
 .portfolio-label {
   position: absolute;
@@ -658,6 +675,27 @@ h2 {
   color: var(--text-dark);
 }
 
+.portfolio-item.video {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  cursor: pointer;
+}
+
+.preview-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform 0.6s ease;
+}
+
+/* Zoom effect on hover */
+.portfolio-item.video:hover .preview-video {
+  transform: scale(1.08);
+}
+
+
 .portfolio-item:hover .portfolio-label {
   opacity: 1;
   transform: translateY(-4px);
@@ -677,6 +715,10 @@ h2 {
   .portfolio-grid {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+  .portfolio-item.landscape {
+    grid-column: span 1;
+    height: 360px;
   }
 
   .portfolio-grid.carousel-mode {
